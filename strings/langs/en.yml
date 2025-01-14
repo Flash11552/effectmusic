@@ -75,7 +75,7 @@ admin_25: "» Yayım uğurla axtarış edilib.\n\n<b>Müddət:</b> {0} dəqiqə"
 
 start_1: "{0} aktivdir.\n\n<b>✫ Son Aktivlik Zamanı :</b> {1}"
 start_2: "<b>Salam</b> {0}, 🥀\n\n๏ Bu {1}-dir!\n\n➻ Sürətli və güclü bir Telegram musiqi botu ilə bəzi gözəl xüsusiyyətlərlə.\n\n<b><u>Dəstəklenen Platformalar :</b></u> YouTube, Spotify, Resso, Apple Music və SoundCloud.\n──────────────────\n<b>๏ Mənim modul və komandalarım haqqında məlumat almaq üçün kömək düyməsini klikləyin.</b>"
-start_3: "Salam {0},\nBu {1}-dir\n\nMəni {2} chatinə əlavə etdiyiniz üçün təşəkkür edirəm, {3} indi burada mahnılar oynada bilər."
+start_3: "Salam {0},\nBu {1}-dir\n\nMəni {2} chatina əlavə etdiyiniz üçün təşəkkür edirəm, {3} indi burada mahnılar oynada bilər."
 start_4: "🎄 <b>SUPERQRUP LAZIMDIR</b> 🎄\n\nZəhmət olmasa, <b>qrupunuzu</b> <b>superqrupa</b> çevirin və sonra məni yenidən əlavə edin.\n\n<b>SUPERQRUP NECƏ YARADILIR?</b>\n- Qrupunuzun chat tarixini <b>görünən</b> edin."
 start_5: "<b>↝ QARA LİSTƏDƏ OLAN CHAT ↜</b>\n\nBu chat {0} verilənlər bazasında qara siyahıya alınıb.\nChatınızı açmaq üçün <a href={1}>sudo istifadəçisindən</a> sorğu edin və ya <a href={2}>dəstək chatına</a> baş çəkin."
 start_6: "😲 <b>MUSİQİ MƏLUMATLARI</b> 😲\n\n📌 <b>Başlıq :</b> {0}\n\n⏳ <b>Müddət :</b> {1} dəqiqə\n👀 <b>Baxışlar :</b> <code>{2}</code>\n⏰ <b>Yayımlandı :</b> {3}\n📎 <b>Kanallar :</b> <a href={4}>{5}</a>\n\n<u><b>🥀 Axtarış gücləndirildi {6} tərəfindən</b></u>"
