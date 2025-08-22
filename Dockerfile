@@ -1,5 +1,5 @@
 # Yeni baza image (Debian Bullseye üzərindədir, dəstəklənir)
-FROM nikolaik/python-nodejs:python3.10-nodejs20
+FROM nikolaik/python-nodejs:python3.11-nodejs20
 
 # ffmpeg quraşdırılması
 RUN apt-get update \
