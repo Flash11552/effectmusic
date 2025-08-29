@@ -21,7 +21,7 @@ def upload_file(file_path):
 async def get_link_group(client, message):
     if not message.reply_to_message:
         return await message.reply_text(
-            "Pʟᴇᴀsᴇ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇᴅɪᴀ ᴛᴏ ᴜᴘʟᴏᴀᴅ ᴏɴ Tᴇʟᴇɢʀᴀᴘʜ"
+            "Zəhmət olmasa bir şəkil, gif və ya videoya yanıt atın"
         )
 
     media = message.reply_to_message
@@ -34,31 +34,37 @@ async def get_link_group(client, message):
         file_size = media.document.file_size
 
     if file_size > 200 * 1024 * 1024:
-        return await message.reply_text("Pʟᴇᴀsᴇ ᴘʀᴏᴠɪᴅᴇ ᴀ ᴍᴇᴅɪᴀ ғɪʟᴇ ᴜɴᴅᴇʀ 200MB.")
+        return await message.reply_text("200 MB a qədər fayllar atın")
 
     try:
         text = await message.reply("Pʀᴏᴄᴇssɪɴɢ...")
 
+        last_percent = 0
+
         async def progress(current, total):
-            try:
-                await text.edit_text(f"📥 Dᴏᴡɴʟᴏᴀᴅɪɴɢ... {current * 100 / total:.1f}%")
-            except Exception:
-                pass
+            nonlocal last_percent
+            percent = round(current * 100 / total, 1)
+            if percent != last_percent:  # eyni faizdə olarsa edit etmə
+                last_percent = percent
+                try:
+                    await text.edit_text(f"📥 Yüklənir... {percent}%")
+                except Exception:
+                    pass
 
         try:
             local_path = await media.download(progress=progress)
-            await text.edit_text("📤 Uᴘʟᴏᴀᴅɪɴɢ ᴛᴏ ᴛᴇʟᴇɢʀᴀᴘʜ...")
+            await text.edit_text("📤 Hazır Olur...")
 
             success, upload_path = upload_file(local_path)
 
             if success:
                 await text.edit_text(
-                    f"🌐 | [ᴜᴘʟᴏᴀᴅᴇᴅ ʟɪɴᴋ]({upload_path})",
+                    f"🌐 | [Hazırdı]({upload_path})",
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [
                                 InlineKeyboardButton(
-                                    "ᴜᴘʟᴏᴀᴅᴇᴅ ғɪʟᴇ",
+                                    "Buradan Götür",
                                     url=upload_path,
                                 )
                             ]
@@ -67,7 +73,7 @@ async def get_link_group(client, message):
                 )
             else:
                 await text.edit_text(
-                    f"ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ ᴡʜɪʟᴇ ᴜᴘʟᴏᴀᴅɪɴɢ ʏᴏᴜʀ ғɪʟᴇ\n{upload_path}"
+                    f"Xəta\n{upload_path}"
                 )
 
             try:
@@ -76,7 +82,7 @@ async def get_link_group(client, message):
                 pass
 
         except Exception as e:
-            await text.edit_text(f"❌ Fɪʟᴇ ᴜᴘʟᴏᴀᴅ ғᴀɪʟᴇᴅ\n\n<i>Rᴇᴀsᴏɴ: {e}</i>")
+            await text.edit_text(f"❌ Xəta\n\n<i>Rᴇᴀsᴏɴ: {e}</i>")
             try:
                 os.remove(local_path)
             except Exception:
