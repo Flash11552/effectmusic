@@ -71,7 +71,7 @@ def stream_markup_timer(_, vidid, chat_id, played, dur):
                 text="⛦ ᴋᴜʀᴜᴄᴜ ❥", url=f"https://t.me/Legnddi"
             ),
             InlineKeyboardButton(
-                text="⛦ ᴄʜᴀᴛ ❥", url=f"https://t.me/effectbots"
+                text="⛦ ᴄʜᴀᴛ ❥", url=f"https://t.me/Vipbotlarsupport"
             ),
         ],
         [InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close")],
@@ -93,7 +93,7 @@ def stream_markup(_, videoid, chat_id):
                 text="⛦ ᴋᴜʀᴜᴄᴜ ❥", url=f"https://t.me/Legnddi"
             ),
             InlineKeyboardButton(
-                text="⛦ ᴄʜᴀᴛ ❥", url=f"https://t.me/effectbots"
+                text="⛦ ᴄʜᴀᴛ ❥", url=f"https://t.me/Vipbotlarsupport"
             ),
         ],
         [InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close")],
@@ -248,7 +248,7 @@ def stream_markup2(_, chat_id):
                 text="⛦ ᴋᴜʀᴜᴄᴜ ❥", url=f"https://t.me/Legnddi"
             ),
             InlineKeyboardButton(
-                text="⛦ ᴄʜᴀᴛ ❥", url=f"https://t.me/effectbots"
+                text="⛦ ᴄʜᴀᴛ ❥", url=f"https://t.me/Vipbotlarsupport"
             ),
         ],
 
