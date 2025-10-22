@@ -518,11 +518,11 @@ async def play_music(client, CallbackQuery, _):
     ffplay = True if fplay == "f" else None
     try:
         from BrandrdXMusic.core.call import Hotty
-            try:
-                await Hotty.pytgcalls.leave_group_call(chat_id)
-            except Exception:
-                pass
-            await asyncio.sleep(1)
+    try:
+        await Hotty.pytgcalls.leave_group_call(chat_id)
+    except Exception:
+        pass
+    await asyncio.sleep(1)
 
         await stream(
             _,
@@ -622,11 +622,11 @@ async def play_playlists_command(client, CallbackQuery, _):
             return await mystic.edit_text(_["play_3"])
     try:
         from BrandrdXMusic.core.call import Hotty
-            try:
-                await Hotty.pytgcalls.leave_group_call(chat_id)
-            except Exception:
-                pass
-            await asyncio.sleep(1)
+    try:
+        await Hotty.pytgcalls.leave_group_call(chat_id)
+    except Exception:
+        pass
+    await asyncio.sleep(1)
 
         await stream(
             _,
