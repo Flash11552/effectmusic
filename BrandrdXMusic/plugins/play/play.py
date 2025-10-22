@@ -93,6 +93,13 @@ async def play_commnd(
             }
 
             try:
+                from BrandrdXMusic.core.call import Hotty
+            try:
+                await Hotty.pytgcalls.leave_group_call(chat_id)
+            except Exception:
+                pass
+            await asyncio.sleep(1)
+                
                 await stream(
                     _,
                     mystic,
@@ -136,6 +143,13 @@ async def play_commnd(
                 "dur": dur,
             }
             try:
+                from BrandrdXMusic.core.call import Hotty
+            try:
+                await Hotty.pytgcalls.leave_group_call(chat_id)
+            except Exception:
+                pass
+            await asyncio.sleep(1)
+            
                 await stream(
                     _,
                     mystic,
@@ -270,6 +284,13 @@ async def play_commnd(
                     )
                 )
             try:
+                from BrandrdXMusic.core.call import Hotty
+            try:
+                await Hotty.pytgcalls.leave_group_call(chat_id)
+            except Exception:
+                pass
+            await asyncio.sleep(1)
+
                 await stream(
                     _,
                     mystic,
@@ -299,6 +320,13 @@ async def play_commnd(
                 return await mystic.edit_text(_["general_2"].format(type(e).__name__))
             await mystic.edit_text(_["str_2"])
             try:
+                from BrandrdXMusic.core.call import Hotty
+            try:
+                await Hotty.pytgcalls.leave_group_call(chat_id)
+            except Exception:
+                pass
+            await asyncio.sleep(1)
+            
                 await stream(
                     _,
                     mystic,
@@ -354,6 +382,13 @@ async def play_commnd(
                     reply_markup=InlineKeyboardMarkup(buttons),
                 )
         try:
+            from BrandrdXMusic.core.call import Hotty
+            try:
+                await Hotty.pytgcalls.leave_group_call(chat_id)
+            except Exception:
+                pass
+            await asyncio.sleep(1)
+            
             await stream(
                 _,
                 mystic,
@@ -482,6 +517,13 @@ async def play_music(client, CallbackQuery, _):
     video = True if mode == "v" else None
     ffplay = True if fplay == "f" else None
     try:
+        from BrandrdXMusic.core.call import Hotty
+            try:
+                await Hotty.pytgcalls.leave_group_call(chat_id)
+            except Exception:
+                pass
+            await asyncio.sleep(1)
+
         await stream(
             _,
             mystic,
@@ -579,6 +621,13 @@ async def play_playlists_command(client, CallbackQuery, _):
         except:
             return await mystic.edit_text(_["play_3"])
     try:
+        from BrandrdXMusic.core.call import Hotty
+            try:
+                await Hotty.pytgcalls.leave_group_call(chat_id)
+            except Exception:
+                pass
+            await asyncio.sleep(1)
+
         await stream(
             _,
             mystic,
