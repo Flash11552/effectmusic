@@ -31,6 +31,7 @@ async def brah2(_, msg):
 # invite members on vc
 @app.on_message(filters.video_chat_members_invited)
 async def brah3(app: app, message: Message):
+    user_mention = message.from_user.mention if message.from_user else "Bir istifadəçi"
     text = f"➻ {message.from_user.mention}\n\n**๏ ᴠɪᴅᴇᴏ-söʜʙəᴛə ᴅəᴠəᴛ ᴇᴅɪʟɪʀ :**\n\n**➻ **"
     x = 0
     for user in message.video_chat_members_invited.users:
