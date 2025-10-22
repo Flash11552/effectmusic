@@ -54,6 +54,17 @@ async def play_commnd(
     url,
     fplay,
 ):
+    file_path = None
+    details = None
+    video = None 
+    track_id = None
+    plist_id = None
+    plist_type = None
+    spotify = None
+    slider = None
+    img = None
+    cap = None
+    
     mystic = await message.reply_text(
         _["play_2"].format(channel) if channel else _["play_1"]
     )
