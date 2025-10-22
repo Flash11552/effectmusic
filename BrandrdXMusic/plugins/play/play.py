@@ -1,6 +1,5 @@
 import random
 import string
-import asyncio
 
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, InputMediaPhoto, Message
@@ -54,17 +53,6 @@ async def play_commnd(
     url,
     fplay,
 ):
-    file_path = None
-    details = None
-    video = None 
-    track_id = None
-    plist_id = None
-    plist_type = None
-    spotify = None
-    slider = None
-    img = None
-    cap = None
-    
     mystic = await message.reply_text(
         _["play_2"].format(channel) if channel else _["play_1"]
     )
@@ -105,13 +93,6 @@ async def play_commnd(
             }
 
             try:
-                from BrandrdXMusic.core.call import Hotty
-                try:
-                    await Hotty.pytgcalls.leave_group_call(chat_id)
-                except Exception:
-                    pass
-                await asyncio.sleep(1)
-                
                 await stream(
                     _,
                     mystic,
@@ -125,7 +106,7 @@ async def play_commnd(
                 )
             except Exception as e:
                 ex_type = type(e).__name__
-                err = e if ex_type == "AssistantErr" else f"{ex_type}: {e}"
+                err = e if ex_type == "AssistantErr" else _["general_2"].format(ex_type)
                 return await mystic.edit_text(err)
             return await mystic.delete()
         return
@@ -155,13 +136,6 @@ async def play_commnd(
                 "dur": dur,
             }
             try:
-                from BrandrdXMusic.core.call import Hotty
-                try:
-                    await Hotty.pytgcalls.leave_group_call(chat_id)
-                except Exception:
-                    pass
-                await asyncio.sleep(1)
-            
                 await stream(
                     _,
                     mystic,
@@ -176,7 +150,7 @@ async def play_commnd(
                 )
             except Exception as e:
                 ex_type = type(e).__name__
-                err = e if ex_type == "AssistantErr" else f"{ex_type}: {e}"
+                err = e if ex_type == "AssistantErr" else _["general_2"].format(ex_type)
                 return await mystic.edit_text(err)
             return await mystic.delete()
         return
@@ -296,13 +270,6 @@ async def play_commnd(
                     )
                 )
             try:
-                from BrandrdXMusic.core.call import Hotty
-                try:
-                    await Hotty.pytgcalls.leave_group_call(chat_id)
-                except Exception:
-                    pass
-                await asyncio.sleep(1)
-
                 await stream(
                     _,
                     mystic,
@@ -316,7 +283,7 @@ async def play_commnd(
                 )
             except Exception as e:
                 ex_type = type(e).__name__
-                err = e if ex_type == "AssistantErr" else f"{ex_type}: {e}"
+                err = e if ex_type == "AssistantErr" else _["general_2"].format(ex_type)
                 return await mystic.edit_text(err)
             return await mystic.delete()
         else:
@@ -332,13 +299,6 @@ async def play_commnd(
                 return await mystic.edit_text(_["general_2"].format(type(e).__name__))
             await mystic.edit_text(_["str_2"])
             try:
-                from BrandrdXMusic.core.call import Hotty
-                try:
-                    await Hotty.pytgcalls.leave_group_call(chat_id)
-                except Exception:
-                    pass
-                await asyncio.sleep(1)
-            
                 await stream(
                     _,
                     mystic,
@@ -353,7 +313,7 @@ async def play_commnd(
                 )
             except Exception as e:
                 ex_type = type(e).__name__
-                err = e if ex_type == "AssistantErr" else f"{ex_type}: {e}"
+                err = e if ex_type == "AssistantErr" else _["general_2"].format(ex_type)
                 return await mystic.edit_text(err)
             return await play_logs(message, streamtype="M3u8 or Index Link")
     else:
@@ -394,13 +354,6 @@ async def play_commnd(
                     reply_markup=InlineKeyboardMarkup(buttons),
                 )
         try:
-            from BrandrdXMusic.core.call import Hotty
-            try:
-                await Hotty.pytgcalls.leave_group_call(chat_id)
-            except Exception:
-                pass
-            await asyncio.sleep(1)
-            
             await stream(
                 _,
                 mystic,
@@ -416,7 +369,7 @@ async def play_commnd(
             )
         except Exception as e:
             ex_type = type(e).__name__
-            err = e if ex_type == "AssistantErr" else f"{ex_type}: {e}"
+            err = e if ex_type == "AssistantErr" else _["general_2"].format(ex_type)
             return await mystic.edit_text(err)
         await mystic.delete()
         return await play_logs(message, streamtype=streamtype)
@@ -529,13 +482,6 @@ async def play_music(client, CallbackQuery, _):
     video = True if mode == "v" else None
     ffplay = True if fplay == "f" else None
     try:
-        from BrandrdXMusic.core.call import Hotty
-        try:
-            await Hotty.pytgcalls.leave_group_call(chat_id)
-        except Exception:
-            pass
-        await asyncio.sleep(1)
-
         await stream(
             _,
             mystic,
@@ -550,7 +496,7 @@ async def play_music(client, CallbackQuery, _):
         )
     except Exception as e:
         ex_type = type(e).__name__
-        err = e if ex_type == "AssistantErr" else f"{ex_type}: {e}"
+        err = e if ex_type == "AssistantErr" else _["general_2"].format(ex_type)
         return await mystic.edit_text(err)
     return await mystic.delete()
 
@@ -606,119 +552,4 @@ async def play_playlists_command(client, CallbackQuery, _):
         try:
             result = await YouTube.playlist(
                 videoid,
-                config.PLAYLIST_FETCH_LIMIT,
-                CallbackQuery.from_user.id,
-                True,
-            )
-        except:
-            return await mystic.edit_text(_["play_3"])
-    if ptype == "spplay":
-        try:
-            result, spotify_id = await Spotify.playlist(videoid)
-        except:
-            return await mystic.edit_text(_["play_3"])
-    if ptype == "spalbum":
-        try:
-            result, spotify_id = await Spotify.album(videoid)
-        except:
-            return await mystic.edit_text(_["play_3"])
-    if ptype == "spartist":
-        try:
-            result, spotify_id = await Spotify.artist(videoid)
-        except:
-            return await mystic.edit_text(_["play_3"])
-    if ptype == "apple":
-        try:
-            result, apple_id = await Apple.playlist(videoid, True)
-        except:
-            return await mystic.edit_text(_["play_3"])
-    try:
-        from BrandrdXMusic.core.call import Hotty
-        try:
-            await Hotty.pytgcalls.leave_group_call(chat_id)
-        except Exception:
-            pass
-        await asyncio.sleep(1)
-
-        await stream(
-            _,
-            mystic,
-            user_id,
-            result,
-            chat_id,
-            user_name,
-            CallbackQuery.message.chat.id,
-            video,
-            streamtype="playlist",
-            spotify=spotify,
-            forceplay=ffplay,
-        )
-    except Exception as e:
-        ex_type = type(e).__name__
-        err = e if ex_type == "AssistantErr" else f"{ex_type}: {e}"
-        return await mystic.edit_text(err)
-    return await mystic.delete()
-
-
-@app.on_callback_query(filters.regex("slider") & ~BANNED_USERS)
-@languageCB
-async def slider_queries(client, CallbackQuery, _):
-    callback_data = CallbackQuery.data.strip()
-    callback_request = callback_data.split(None, 1)[1]
-    (
-        what,
-        rtype,
-        query,
-        user_id,
-        cplay,
-        fplay,
-    ) = callback_request.split("|")
-    if CallbackQuery.from_user.id != int(user_id):
-        try:
-            return await CallbackQuery.answer(_["playcb_1"], show_alert=True)
-        except:
-            return
-    what = str(what)
-    rtype = int(rtype)
-    if what == "F":
-        if rtype == 9:
-            query_type = 0
-        else:
-            query_type = int(rtype + 1)
-        try:
-            await CallbackQuery.answer(_["playcb_2"])
-        except:
-            pass
-        title, duration_min, thumbnail, vidid = await YouTube.slider(query, query_type)
-        buttons = slider_markup(_, vidid, user_id, query, query_type, cplay, fplay)
-        med = InputMediaPhoto(
-            media=thumbnail,
-            caption=_["play_10"].format(
-                title.title(),
-                duration_min,
-            ),
-        )
-        return await CallbackQuery.edit_message_media(
-            media=med, reply_markup=InlineKeyboardMarkup(buttons)
-        )
-    if what == "B":
-        if rtype == 0:
-            query_type = 9
-        else:
-            query_type = int(rtype - 1)
-        try:
-            await CallbackQuery.answer(_["playcb_2"])
-        except:
-            pass
-        title, duration_min, thumbnail, vidid = await YouTube.slider(query, query_type)
-        buttons = slider_markup(_, vidid, user_id, query, query_type, cplay, fplay)
-        med = InputMediaPhoto(
-            media=thumbnail,
-            caption=_["play_10"].format(
-                title.title(),
-                duration_min,
-            ),
-        )
-        return await CallbackQuery.edit_message_media(
-            media=med, reply_markup=InlineKeyboardMarkup(buttons)
-)
+   
